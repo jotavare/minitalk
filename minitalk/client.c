@@ -12,43 +12,35 @@
 
 #include "minitalk.h"
 
-// Sends the specified message to the specified process using SIGUSR1 and SIGUSR2 signals
+// Sends the specified message to the specified
+// process using SIGUSR1 and SIGUSR2 signals
+
+// Initialize variables
+
+// Iterate through each character of the message
+
+// Iterate through each bit of the current character
+
+// If the current bit is 1, send SIGUSR1 signal;
+// otherwise, send SIGUSR2 signal
+
+// Sleep for 100 microseconds between each signal
 void	signal_action(int pid, char *str)
 {
 	int	i;
 	int	c;
 
-	// Initialize variables
 	i = 0;
-	c = 0;
-
-	// Iterate through each character of the message
 	while (*str)
 	{
 		c = *(str);
-
-		// Iterate through each bit of the current character
 		while (i < 8)
 		{
-			// If the current bit is 1, send SIGUSR1 signal; otherwise, send SIGUSR2 signal
 			if (c << i & 0b10000000)
-			{
-				if (kill(pid, SIGUSR1) == -1)
-				{
-					ft_printf("Unable to send SIGUSR1\n");
-					exit(EXIT_FAILURE);
-				}
-			}
+				kill(pid, SIGUSR1);
 			else
-			{
-				if (kill(pid, SIGUSR2) == -1)
-				{
-					ft_printf("Unable to send SIGUSR2\n");
-					exit(EXIT_FAILURE);
-				}
-			}
+				kill(pid, SIGUSR2);
 			i++;
-			// Sleep for 100 microseconds between each signal
 			usleep(100);
 		}
 		str++;
@@ -56,9 +48,13 @@ void	signal_action(int pid, char *str)
 	}
 }
 
+// Validate the number of arguments
+
+// Convert the server ID (PID) to an integer and
+// send the message using the signal_action function
+
 int	main(int argc, char **argv)
 {
-	// Validate the number of arguments
 	if (argc != 3)
 	{
 		ft_printf("Invalid number of arguments.\n");
@@ -67,7 +63,6 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		// Convert the server ID (PID) to an integer and send the message using the signal_action function
 		signal_action(ft_atoi(argv[1]), argv[2]);
 	}
 	return (0);
