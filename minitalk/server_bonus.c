@@ -12,45 +12,64 @@
 
 #include "minitalk.h"
 
-// Handles SIGUSR1 and SIGUSR2 signals by shifting and ORing the bits of a character, and sends a confirmation signal back to the sender
+// Handles SIGUSR1 and SIGUSR2 signals by
+// shifting and ORing the bits of a character,
+// and sends a confirmation signal back to the sender
+
+// Counter for the number of bits received
+
+// Character being built from the received bits
+
+// Unused parameter
+
+// Shift the character left and set the least
+// significant bit to 1 if the signal is SIGUSR1;
+// otherwise, shift the character left and set the
+// least significant bit to 0
+
+// If 8 bits have been received, print the character and
+// reset the counter and character, and send a SIGUSR1
+// signal back to the sender as a confirmation
+
+// si_pid is the process ID of the sender
+
+// Send a SIGUSR2 signal back to the sender as a confirmation
+
+// si_pid is the process ID of the sender
 void	handler(int sig, siginfo_t *info, void *content)
 {
-	static int				i = 0;  // Counter for the number of bits received
-	static unsigned char	c = 0;  // Character being built from the received bits
+	static int				i = 0;
+	static unsigned char	c = 0;
 
-	(void)content;  // Unused parameter
-
-	// Shift the character left and set the least significant bit to 1 if the signal is SIGUSR1; otherwise, shift the character left and set the least significant bit to 0
+	(void)content;
 	if (sig == SIGUSR2)
 		c = c << 1;
 	else if (sig == SIGUSR1)
 		c = (c << 1) | 0b00000001;
 	i++;
-
-	// If 8 bits have been received, print the character and reset the counter and character, and send a SIGUSR1 signal back to the sender as a confirmation
 	if (i == 8)
 	{
 		ft_printf("%c", c);
 		i = 0;
 		c = 0;
-		if (kill(info->si_pid, SIGUSR1) == -1)  // si_pid is the process ID of the sender
+		if (kill(info->si_pid, SIGUSR1) == -1)
 			ft_putstr_fd("Unable to send SIGUSR1\n", 2);
 		return ;
 	}
-
-	// Send a SIGUSR2 signal back to the sender as a confirmation
-	if (kill(info->si_pid, SIGUSR2) == -1)  // si_pid is the process ID of the sender
+	if (kill(info->si_pid, SIGUSR2) == -1)
 		ft_putstr_fd("Unable to send SIGUSR2\n", 2);
 }
+
+// Print the process ID
+
+// Set up the signal handler for SIGUSR1 and
+// SIGUSR2 and wait for signals indefinitely
 
 int	main(void)
 {
 	struct sigaction	sa_sig;
 
-	// Print the process ID
 	ft_printf("PID: %d\n", getpid());
-
-	// Set up the signal handler for SIGUSR1 and SIGUSR2 and wait for signals indefinitely
 	while (1)
 	{
 		sa_sig.sa_sigaction = &handler;
@@ -62,4 +81,3 @@ int	main(void)
 	}
 	return (0);
 }
-
