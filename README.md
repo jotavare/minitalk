@@ -38,7 +38,7 @@ make
 ./server
 ./server_bonus
 ```
-#### 4º - Run client or client_bonus, paste the PID and write a message (emote for bonus)
+#### 4º - Open another terminal, run client or client_bonus, paste the PID and write a message
 ```bash
 ./client [SERVER PID] [MESSAGE]
 ./client_bonus [SERVER PID] [MESSAGE] [EMOTE]
