@@ -15,6 +15,8 @@
 <p align="center">
 	<a href="#about">About</a> •
 	<a href="#how-to-use">How to use</a> •
+	<a href="#mandatory">Mandatory</a> •
+	<a href="#bonus">Bonus</a> •
 	<a href="#norminette">Norminette</a> •
 	<a href="#license">License</a>
 </p>
@@ -29,24 +31,32 @@ Minitalk is a server/client system that uses UNIX signals for communication. The
 ```bash
 git clone https://github.com/jotavare/minitalk
 ```
+
 #### 2º - Enter the project folder and run `make`
 ```bash
 cd minitalk/minitalk
 make
 ```
+
 #### 3º - Run server or server_bonus and copy its PID
 ```bash
 ./server
 ./server_bonus
 ```
+
 #### 4º - Open another terminal, run client or client_bonus, paste the PID and write a message
 ```bash
 ./client [SERVER PID] [MESSAGE]
 ./client_bonus [SERVER PID] [MESSAGE] [EMOTE]
 ```
+
 #### MAKEFILE RULES
 
-`make` or `make all` - Compile ft_printf.
+`make` - Compile libft mandatory functions.
+
+`make bonus` - Compile libft bonus functions.
+
+`make all` - Compile mandatory + bonus functions.
 
 `make clean` - Delete all .o (object files) files.
 
@@ -55,14 +65,13 @@ make
 `make re` - use rules `fclean` + `all`.
 
 ## MANDATORY
-This ft_printf function supports several format specifiers, described below.
+* Produce server and client executables.
+* Cliente must communicate a string passed as a parameter to server (referenced by its process ID) and display it.
+* Use `SIGUSR1` and `SIGUSR2` signals only.
 
-* `%c` - Prints a single character
-* `%s` - Prints a string
-* `%p` - Prints a pointer adress
-* `%d` or `%i` - Prints a signed integer
-* `%u` - Prints an unsigned integer
-* `%x` or `%X` - Prints an unsigned integer in hexadecimal format
+## BONUS
+* Add reception acknowledgement system.
+* Support unicode characters.
 
 ## NORMINETTE
 At 42 School, it is expected that almost every project is written in accordance with the Norm, which is the coding standard of the school.
