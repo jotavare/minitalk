@@ -27,6 +27,7 @@ Minitalk is a server/client system that uses UNIX signals for communication. The
 <a href="https://github.com/jotavare/minitalk/blob/master/subject/en_subject_minitalk.pdf">Click here</a> for the subject of this project.
 
 ## HOW TO USE
+#### COMPILATION AND EXECUTION
 #### 1º - Clone the repository
 ```bash
 git clone https://github.com/jotavare/minitalk
