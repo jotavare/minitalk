@@ -67,7 +67,7 @@ make
 
 ## MANDATORY
 * Produce server and client executables.
-* Cliente must communicate a string passed as a parameter to server (referenced by its process ID) and display it.
+* Client must communicate a string passed as a parameter to server (referenced by its process ID) and display it.
 * Use `SIGUSR1` and `SIGUSR2` signals only.
 
 ## BONUS
