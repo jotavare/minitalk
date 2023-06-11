@@ -53,11 +53,11 @@ make
 
 #### MAKEFILE RULES
 
-`make` - Compile libft mandatory functions.
+`make` - Compile minitalk mandatory.
 
-`make bonus` - Compile libft bonus functions.
+`make bonus` - Compile minitalk bonus.
 
-`make all` - Compile mandatory + bonus functions.
+`make all` - Compile mandatory + bonus.
 
 `make clean` - Delete all .o (object files) files.
 
