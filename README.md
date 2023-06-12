@@ -53,26 +53,26 @@ make
 
 #### MAKEFILE RULES
 
-`make` - Compile minitalk mandatory.
+`make` - Compile minitalk mandatory files.
 
-`make bonus` - Compile minitalk bonus.
+`make bonus` - Compile minitalk bonus files.
 
-`make all` - Compile mandatory + bonus.
+`make all` - Compile mandatory + bonus files.
 
 `make clean` - Delete all .o (object files) files.
 
 `make fclean` - Delete all .o (object files) and .a (executable) files.
 
-`make re` - use rules `fclean` + `all`.
+`make re` - Use rules `fclean` + `all`.
 
 ## MANDATORY
-* Produce server and client executables.
-* Client must communicate a string passed as a parameter to server (referenced by its process ID) and display it.
-* Use `SIGUSR1` and `SIGUSR2` signals only.
+- [x] Produce server and client executables.
+- [x] Client must communicate a string passed as a parameter to server (referenced by its process ID) and display it.
+- [x] Use `SIGUSR1` and `SIGUSR2` signals only.
 
 ## BONUS
-* Add reception acknowledgement system.
-* Support unicode characters.
+- [x] Add reception acknowledgement system.
+- [x] Support unicode characters.
 
 ## NORMINETTE
 At 42 School, it is expected that almost every project is written in accordance with the Norm, which is the coding standard of the school.
