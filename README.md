@@ -57,7 +57,7 @@ make
 
 `make bonus` - Compile minitalk **bonus** files.
 
-`make all` - Compile **mandatory** + bonus** files.
+`make all` - Compile **mandatory** + **bonus** files.
 
 `make clean` - Delete all .o (object files) files.
 
