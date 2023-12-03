@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/jotavare/jotavare/blob/main/42/banner/new/42_minitalk_banner_new.png">
+  <img src="https://github.com/jotavare/jotavare/blob/main/42/banners/piscine_and_common_core/github_piscine_and_common_core_banner_minitalk.png">
 </p>
 
 <p align="center">
@@ -22,12 +22,12 @@
 </p>
 
 ## ABOUT
-Minitalk is a server/client system that uses UNIX signals for communication. The server displays its PID and receives decrypted signals as characters, while the client encrypts messages and sends true/false signals using SIGUSR1 or SIGUSR2 to the server's PID.
+This is a server/client system that uses UNIX signals for communication. The server displays its PID and receives decrypted signals as characters, while the client encrypts messages and sends true/false signals using SIGUSR1 or SIGUSR2 to the server's PID.
 
-<a href="https://github.com/jotavare/minitalk/blob/master/subject/en_subject_minitalk.pdf">Click here</a> for the subject of this project.
+- [Subject](https://github.com/jotavare/minitalk/blob/master/subject/en_subject_minitalk.pdf) `PDF`
+- [References](https://github.com/jotavare/42-resources#02-minitalk) `GitHub`
 
 ## HOW TO USE
-#### COMPILATION AND EXECUTION
 #### 1º - Clone the repository
 ```bash
 git clone https://github.com/jotavare/minitalk
@@ -67,7 +67,7 @@ make
 
 ## MANDATORY
 - [x] Produce server and client executables.
-- [x] Client must communicate a string passed as a parameter to the server (referenced by its process ID) and display it.
+- [x] The Client must communicate a string passed as a parameter to the server (referenced by its process ID) and display it.
 - [x] Use `SIGUSR1` and `SIGUSR2` signals only.
 
 ## BONUS
@@ -75,23 +75,23 @@ make
 - [x] Support Unicode characters.
 
 ## NORMINETTE
-At 42 School, it is expected that almost every project is written in accordance with the Norm, which is the coding standard of the school.
+> At 42 School, it is expected that almost every project is written following the Norm, which is the coding standard of the school.
 
 ```
-- No for, do...while, switch, case, goto, ternary operators and variable-length arrays are allowed
-- Each function must be a maximum of 25 lines, not counting the function's curly brackets
-- Each line must be at most 80 columns wide, comments included
-- A function can take 4 named parameters maximum
-- No assigns and declarations in the same line (unless static)
-- You can't declare more than 5 variables per function
+- No for, do...while, switch, case, goto, ternary operators, or variable-length arrays allowed;
+- Each function must be a maximum of 25 lines, not counting the function's curly brackets;
+- Each line must be at most 80 columns wide, with comments included;
+- A function can take 4 named parameters maximum;
+- No assigns and declarations in the same line (unless static);
+- You can't declare more than 5 variables per function;
 - ...
 ```
 
-* [42 Norms](https://github.com/jotavare/jotavare/blob/main/42/pdf/en_norm.pdf) - Information about 42 code norms. `PDF`
-* [Norminette](https://github.com/42School/norminette) - Tool by 42, to respect the code norm. `GitHub`
+* [42 Norms](https://github.com/42School/norminette/blob/master/pdf/en.norm.pdf) - Information about 42 code norms. `PDF`
+* [Norminette](https://github.com/42School/norminette) - Tool to respect the code norm, made by 42. `GitHub`
 * [42 Header](https://github.com/42Paris/42header) - 42 header for Vim. `GitHub`
 
 ## LICENSE
 <p>
-This work is published under the terms of <a href="https://github.com/jotavare/jotavare/blob/main/LICENSE">42 Unlicense</a>.
+This work is published under the terms of <a href="https://github.com/jotavare/minitalk/blob/main/LICENSE">Unlicense</a>.
 </p>
