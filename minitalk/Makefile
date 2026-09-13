@@ -50,3 +50,4 @@ fclean:	clean
 		rm -rf $(SERVER) $(CLIENT)
 
 re:	fclean all
+.PHONY:		all bonus clean fclean re

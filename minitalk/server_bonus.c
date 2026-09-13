@@ -72,6 +72,7 @@ int	main(void)
 	ft_printf("PID: %d\n", getpid());
 	while (1)
 	{
+		sigemptyset(&sa_sig.sa_mask);
 		sa_sig.sa_sigaction = &handler;
 		sa_sig.sa_flags = SA_SIGINFO;
 		if (sigaction(SIGUSR1, &sa_sig, NULL) == -1)
