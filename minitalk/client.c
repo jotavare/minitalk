@@ -48,6 +48,26 @@ void	signal_action(int pid, char *str)
 	}
 }
 
+// Check that the argument is a positive decimal number.
+// ft_atoi turns anything else into 0, and kill(0, sig) signals every
+// process in the caller's process group rather than failing.
+
+static int	valid_pid(char *arg)
+{
+	int	i;
+
+	i = 0;
+	if (arg[0] == '\0')
+		return (0);
+	while (arg[i])
+	{
+		if (arg[i] < '0' || arg[i] > '9')
+			return (0);
+		i++;
+	}
+	return (ft_atoi(arg) > 0);
+}
+
 // Validate the number of arguments
 
 // Convert the server ID (PID) to an integer and
@@ -59,6 +79,11 @@ int	main(int argc, char **argv)
 	{
 		ft_printf("Invalid number of arguments.\n");
 		ft_printf("Format: [./client <SERVER ID (PID)> <STRING>]\n");
+		exit(EXIT_FAILURE);
+	}
+	else if (!valid_pid(argv[1]))
+	{
+		ft_printf("Invalid PID: %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	else
