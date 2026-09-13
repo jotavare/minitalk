@@ -1,3 +1,9 @@
 *.out
 *.pdf
 *.swp
+
+# Build output: objects, the libft archive, and the two binaries.
+*.o
+*.a
+server
+client

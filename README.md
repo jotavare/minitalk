@@ -18,12 +18,16 @@
 	<a href="#mandatory">Mandatory</a> •
 	<a href="#bonus">Bonus</a> •
 	<a href="#norminette">Norminette</a> •
+	<a href="#debugging">Debugging</a> •
 	<a href="#contributing">Contributing</a> •
 	<a href="#license">License</a>
 </p>
 
 ## ABOUT
 This is a server/client system that uses UNIX signals for communication. The server displays its PID and receives decrypted signals as characters, while the client encrypts messages and sends true/false signals using SIGUSR1 or SIGUSR2 to the server's PID.
+
+> [!NOTE]
+> For the rest of the projects and exams in the cursus, <a href="https://github.com/jotavare/42-common-core">click here</a>.
 
 ## HOW TO USE
 #### 1º - Clone the repository
@@ -55,7 +59,7 @@ make
 
 `make bonus` - Compile minitalk **bonus** files.
 
-`make all` - Compile **mandatory** + **bonus** files.
+`make all` - Same as `make`, compile minitalk **mandatory** files.
 
 `make clean` - Delete all .o (object files) files.
 
@@ -89,10 +93,34 @@ make
 * [Norminette](https://github.com/42School/norminette) - Tool to respect the code norm, made by 42. `GitHub`
 * [42 Header](https://github.com/42Paris/42header) - 42 header for Vim. `GitHub`
 
+## DEBUGGING
+> Transmission is timing sensitive: the client sends one bit per signal and
+> waits for the server to acknowledge, so a dropped or reordered signal shows
+> up as a garbled character rather than an error.
+
+Compile with `-g` to keep the symbols the debuggers need:
+
+```bash
+make fclean && make CFLAGS="-Wall -Wextra -Werror -g"
+```
+
+`valgrind --leak-check=full ./server` - Report memory that was allocated and never freed; the server accumulates the message as it arrives.
+
+`gdb -p $(pgrep server)` - Attach to a running server and break inside the handler to watch the bits assemble.
+
+`strace -e trace=kill,rt_sigaction ./client PID "hi"` - Show every signal actually sent, which is the quickest way to see a transmission stall.
+
+Worth testing with a long message, with UTF-8 (a multi-byte character is several
+signals, not one), and with a PID that does not exist.
+
+* [GDB](https://www.sourceware.org/gdb/) - The GNU debugger. `Website`
+* [Valgrind](https://valgrind.org/docs/manual/quick-start.html) - Quick start guide. `Website`
+
 ## CONTRIBUTING
 
-If you find any issues or have suggestions for improvements, feel free to fork the repository and open an issue or submit a pull request.
+This repository documents work already submitted and graded, so it is not open
+to changes. Feel free to fork it if any of it is useful to you.
 
 ## LICENSE
 
-This project is available under the MIT License. For further details, please refer to the [LICENSE](https://github.com/jotavare/minitalk/blob/master/LICENSE) file.
+This project is available under the MIT License. For further details, please refer to the [LICENSE](https://github.com/jotavare/minitalk/blob/main/LICENSE) file.
