@@ -50,7 +50,9 @@ void	signal_action(int pid, char *str)
 
 // Check that the argument is a positive decimal number.
 // ft_atoi turns anything else into 0, and kill(0, sig) signals every
-// process in the caller's process group rather than failing.
+// process in the caller's process group rather than failing. The length
+// cap keeps ft_atoi from overflowing a long number back into a plausible
+// PID: pid_max is seven digits at most.
 
 static int	valid_pid(char *arg)
 {
@@ -65,6 +67,8 @@ static int	valid_pid(char *arg)
 			return (0);
 		i++;
 	}
+	if (i > 7)
+		return (0);
 	return (ft_atoi(arg) > 0);
 }
 
