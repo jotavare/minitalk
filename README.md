@@ -41,17 +41,20 @@ cd minitalk/minitalk
 make
 ```
 
-#### 3º - Run server or server_bonus and copy its PID
+#### 3º - Run the server and copy its PID
 ```bash
 ./server
-./server_bonus
 ```
 
-#### 4º - Open another terminal, run client or client_bonus, paste the PID and write a message
+#### 4º - Open another terminal, paste the PID and write a message
 ```bash
 ./client [SERVER PID] [MESSAGE]
-./client_bonus [SERVER PID] [MESSAGE] [EMOTE]
 ```
+
+> [!NOTE]
+> `make bonus` writes the bonus build over the same `server` and `client`
+> names, so the commands above do not change. Run `make` to go back to the
+> mandatory version.
 
 #### MAKEFILE RULES
 

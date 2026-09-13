@@ -107,6 +107,7 @@ int	main(int argc, char **argv)
 	{
 		ft_printf("Number of arguments invalid or the message is empty.\n");
 		ft_printf("Try again.\n");
+		exit(EXIT_FAILURE);
 	}
 	else if (!valid_pid(argv[1]))
 	{
@@ -115,8 +116,9 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
+		sigemptyset(&sa_sig.sa_mask);
 		sa_sig.sa_handler = &handler;
-		sa_sig.sa_flags = SA_SIGINFO;
+		sa_sig.sa_flags = 0;
 		sigaction(SIGUSR1, &sa_sig, NULL);
 		sigaction(SIGUSR2, &sa_sig, NULL);
 		signal_action(ft_atoi(argv[1]), argv[2]);
