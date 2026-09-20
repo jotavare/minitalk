@@ -23,7 +23,7 @@
 // otherwise, send SIGUSR2 signal
 
 // Sleep for 100 microseconds between each signal
-void	signal_action(int pid, char *str)
+int	signal_action(int pid, char *str)
 {
 	int	i;
 	int	c;
@@ -37,19 +37,17 @@ void	signal_action(int pid, char *str)
 			if (c << i & 0b10000000)
 			{
 				if (kill(pid, SIGUSR1) == -1)
-					ft_printf("Unable to send SIGUSR1\n");
+					return (-1);
 			}
-			else
-			{
-				if (kill(pid, SIGUSR2) == -1)
-					ft_printf("Unable to send SIGUSR2\n");
-			}
+			else if (kill(pid, SIGUSR2) == -1)
+				return (-1);
 			i++;
 			usleep(100);
 		}
 		str++;
 		i = 0;
 	}
+	return (0);
 }
 
 // Handles the SIGUSR1 signal by printing a message
@@ -121,7 +119,11 @@ int	main(int argc, char **argv)
 		sa_sig.sa_flags = 0;
 		sigaction(SIGUSR1, &sa_sig, NULL);
 		sigaction(SIGUSR2, &sa_sig, NULL);
-		signal_action(ft_atoi(argv[1]), argv[2]);
+		if (signal_action(ft_atoi(argv[1]), argv[2]) == -1)
+		{
+			ft_printf("No process is listening on PID %s.\n", argv[1]);
+			exit(EXIT_FAILURE);
+		}
 	}
 	return (EXIT_SUCCESS);
 }
