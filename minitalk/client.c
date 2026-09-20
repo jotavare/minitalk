@@ -25,7 +25,7 @@
 // otherwise, send SIGUSR2 signal
 
 // Sleep for 100 microseconds between each signal
-void	signal_action(int pid, char *str)
+int	signal_action(int pid, char *str)
 {
 	int	i;
 	int	c;
@@ -37,15 +37,19 @@ void	signal_action(int pid, char *str)
 		while (i < 8)
 		{
 			if (c << i & 0b10000000)
-				kill(pid, SIGUSR1);
-			else
-				kill(pid, SIGUSR2);
+			{
+				if (kill(pid, SIGUSR1) == -1)
+					return (-1);
+			}
+			else if (kill(pid, SIGUSR2) == -1)
+				return (-1);
 			i++;
 			usleep(100);
 		}
 		str++;
 		i = 0;
 	}
+	return (0);
 }
 
 // Check that the argument is a positive decimal number.
@@ -90,9 +94,10 @@ int	main(int argc, char **argv)
 		ft_printf("Invalid PID: %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	else
+	else if (signal_action(ft_atoi(argv[1]), argv[2]) == -1)
 	{
-		signal_action(ft_atoi(argv[1]), argv[2]);
+		ft_printf("No process is listening on PID %s.\n", argv[1]);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
